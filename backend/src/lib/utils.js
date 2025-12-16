@@ -6,7 +6,6 @@ export const generateToken = (userId,res) => {
         throw new Error("JWT_SECRET is not defined in environment variables");
     }
 
-
     const token = jwt.sign({userId: userId}, process.env.JWT_SECRET,{ expiresIn: process.env.JWT_EXPIRES_IN});
 
     res.cookie("jwt",token,{
@@ -14,7 +13,6 @@ export const generateToken = (userId,res) => {
         httpOnly: true,
         sameSite: "strict",
         secure: process.env.NODE_ENV === "production"
-
     });
 
     return token;
