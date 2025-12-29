@@ -11,7 +11,6 @@ import ChatContainer from '../components/ChatContainer.jsx';
 
 
 function ChatPage({myName}) {
-  const { logout } = useAuthStore();
   const { activeTab,selectedUser } = useChatStore();
 
   return (
