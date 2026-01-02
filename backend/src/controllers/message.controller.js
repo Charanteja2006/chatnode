@@ -25,7 +25,7 @@ export const getMessagesByUserId = async (req, res) => {
     try{
         const myId = req.user._id;
         const {id:userToChatId} = req.params;
-        
+
         const messages = await Message.find({
             $or:[
                 {senderId: myId, receiverId: userToChatId},
@@ -34,7 +34,6 @@ export const getMessagesByUserId = async (req, res) => {
         });
 
         res.status(200).json({
-            message: "Messages fetched successfully",
             messages
         })
 
