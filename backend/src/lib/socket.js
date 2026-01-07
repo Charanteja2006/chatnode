@@ -17,6 +17,10 @@ const io = new Server(server,{
 //apply auth middleware
 io.use(socketAuthMiddleware);
 
+export function getReceiverSocketId(userId){
+    return userSocketMap[userId];
+}
+
 // this will hold mapping of userId to socketId
 const userSocketMap = {};
 

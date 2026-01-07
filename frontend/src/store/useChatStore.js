@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import toast from 'react-hot-toast';
 import {axiosInstance} from '../lib/axios.js';
 import { useAuthStore } from "./useAuthStore";
-import { use } from 'react';
+
 
 export const useChatStore = create((set,get) => ({
     allContacts: [],
@@ -91,5 +91,32 @@ export const useChatStore = create((set,get) => ({
         }
     },
 
+    subscribeToMessages: () => {
+        const { selectedUser, isSoundEnabled } = get();
+        if(!selectedUser) return;
+
+        const socket = useAuthStore.getState().socket;
+
+        socket.on("newMessage", (newMessage) => {
+            const isMessageSentFromSelectedUser = newMessage.senderId === selectedUser._id;
+
+            if(!isMessageSentFromSelectedUser) return;
+
+
+            const currentMessages = get().messages;
+            set({ messages: [...currentMessages, newMessage] });
+
+            if(isSoundEnabled){
+                const notificationSound = new Audio('/sounds/frontend_public_sounds_notification.mp3');
+                notificationSound.currentTime = 0;
+                notificationSound.play().catch((err) => console.log("Error playing sound:", err));
+            }
+        });
+    },
+
+    unsubscribeFromMessages: () => {
+        const socket = useAuthStore.getState().socket;
+        socket.off("newMessage");
+    },
 
 }))
