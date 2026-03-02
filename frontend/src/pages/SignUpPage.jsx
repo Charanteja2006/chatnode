@@ -15,8 +15,8 @@ function SignUpPage() {
   }
 
   return (
-    <div className='w-full flex items-center justify-center p-4 bg-transparent min-h-screen'>
-      <div className='relative w-full max-w-6xl md:h-[800px] h-[650px] shadow-2xl shadow-cyan-900/10 rounded-3xl overflow-hidden'>
+    <div className='w-full flex items-center justify-center p-4 bg-transparent min-h-screen py-12'>
+      <div className='relative w-full max-w-6xl min-h-[600px] h-fit md:h-[80%vh] shadow-2xl shadow-cyan-900/10 rounded-3xl overflow-hidden'>
         <BorderAnimatedContainer>
           <div className='w-full h-full flex flex-col md:flex-row bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl'>
             {/* FORM CLOUMN - LEFT SIDE */}
