@@ -1,19 +1,19 @@
 import Message from '../models/Message.js';
 import User from '../models/User.js';
 import cloudinary from '../lib/cloudinary.js';
-import { getReceiverSocketId,io } from '../lib/socket.js';
+import { getReceiverSocketId, io } from '../lib/socket.js';
 
 export const getAllContacts = async (req, res) => {
-    try{
+    try {
         const loggedInUserId = req.user._id;
-        const filteredUsers = await User.find({_id: { $ne: loggedInUserId }}).select("-password");
+        const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password");
 
         return res.status(200).json({
             message: "Contacts fetched successfully",
             contacts: filteredUsers
         });
 
-    } catch(errot){
+    } catch (errot) {
         console.error("Error in getAllContacts:", error);
         return res.status(500).json({
             message: "Internal Server Error"
@@ -23,14 +23,14 @@ export const getAllContacts = async (req, res) => {
 
 
 export const getMessagesByUserId = async (req, res) => {
-    try{
+    try {
         const myId = req.user._id;
-        const {id:userToChatId} = req.params;
+        const { id: userToChatId } = req.params;
 
         const messages = await Message.find({
-            $or:[
-                {senderId: myId, receiverId: userToChatId},
-                {senderId: userToChatId, receiverId: myId}
+            $or: [
+                { senderId: myId, receiverId: userToChatId },
+                { senderId: userToChatId, receiverId: myId }
             ]
         });
 
@@ -38,7 +38,7 @@ export const getMessagesByUserId = async (req, res) => {
             messages
         })
 
-    } catch(error){
+    } catch (error) {
         console.log("Error in getMessagesByUserId:", error);
         res.status(500).json({
             message: "Internal Server Error"
@@ -47,45 +47,47 @@ export const getMessagesByUserId = async (req, res) => {
 };
 
 export const sendMessage = async (req, res) => {
-    try{
-        const {text,image} = req.body;
-        const  {id:receiverId} = req.params;
+    try {
+        const { text, image } = req.body;
+        const { id: receiverId } = req.params;
         const senderId = req.user._id;
 
-        if(!text && !image){
+        if (!text && !image) {
             return res.status(400).json({
                 message: "Message text or image is required"
             });
         }
-        if(senderId.toString() === receiverId.toString()){
+        if (senderId.toString() === receiverId.toString()) {
             return res.status(400).json({
                 message: "You cannot send message to yourself"
             });
         }
-        const receiverExists = await User.exists({ _id: receiverId});
-        if(!receiverExists){
+        const receiverExists = await User.exists({ _id: receiverId });
+        if (!receiverExists) {
             return res.status(404).json({
                 message: "Receiver user not found"
             });
         }
 
         let imageUrl;
-        if(image){
+        if (image) {
             const uploadResponse = await cloudinary.uploader.upload(image);
             imageUrl = uploadResponse.secure_url;
         }
+
+        const receiverSocketId = getReceiverSocketId(receiverId);
 
         const newMessage = new Message({
             senderId,
             receiverId,
             text,
             image: imageUrl,
+            status: receiverSocketId ? "delivered" : "sent"
         });
 
         await newMessage.save();
 
-        const receiverSocketId = getReceiverSocketId(receiverId);
-        if(receiverSocketId){
+        if (receiverSocketId) {
             io.to(receiverSocketId).emit("newMessage", newMessage);
         }
 
@@ -93,7 +95,7 @@ export const sendMessage = async (req, res) => {
             message: "Message sent successfully",
             newMessage
         });
-    } catch(error){
+    } catch (error) {
         console.error("Error in sendMessage:", error);
         res.status(500).json({
             message: "Internal Server Error"
@@ -102,25 +104,25 @@ export const sendMessage = async (req, res) => {
 };
 
 export const getChatPartners = async (req, res) => {
-    try{
-        const loggedInUserId = req.user._id;    
+    try {
+        const loggedInUserId = req.user._id;
 
         const messages = await Message.find({
-            $or:[{ senderId: loggedInUserId },{ receiverId:loggedInUserId }],
+            $or: [{ senderId: loggedInUserId }, { receiverId: loggedInUserId }],
         });
 
-        const chatPartnerIds = [...new Set(messages.map(msg => msg.senderId.toString() === loggedInUserId.toString() 
-            ? msg.receiverId.toString() 
+        const chatPartnerIds = [...new Set(messages.map(msg => msg.senderId.toString() === loggedInUserId.toString()
+            ? msg.receiverId.toString()
             : msg.senderId.toString()
-            )),
-        ];        
+        )),
+        ];
 
-        const chatPartners = await User.find({_id: {$in:chatPartnerIds}}).select("-password");
+        const chatPartners = await User.find({ _id: { $in: chatPartnerIds } }).select("-password");
 
         res.status(200).json({
             chatPartners
         });
-    } catch(error){
+    } catch (error) {
         console.error("Error in getChatPartners:", error);
         res.status(500).json({
             message: "Internal Server Error"
