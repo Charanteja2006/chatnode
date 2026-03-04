@@ -4,18 +4,17 @@
 
 
 @property --border-angle {
-    inherits: false;
-    initial-value: 0deg;
-    syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+  syntax: "<angle>";
 }
 
 .input {
-  @apply w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white placeholder-white/40 shadow-inner 
-  transition-all duration-300 focus:bg-white/10 focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 outline-none backdrop-blur-md;
+  @apply w-full bg-[#1C1C1C] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white placeholder-white/40 shadow-inner transition-all duration-300 focus:bg-[#2A2A2A] focus:ring-2 focus:ring-[#C4FF00]/50 focus:border-[#C4FF00]/50 outline-none backdrop-blur-md;
 }
 
 .auth-input-icon {
-  @apply absolute left-4 top-1/2 -translate-y-1/2 text-white/50 size-5 transition-colors duration-300 group-focus-within:text-cyan-400;
+  @apply absolute left-4 top-1/2 -translate-y-1/2 text-white/50 size-5 transition-colors duration-300 group-focus-within:text-[#C4FF00] z-10 pointer-events-none;
 }
 
 .auth-input-label {
@@ -23,16 +22,13 @@
 }
 
 .auth-badge {
-  @apply inline-flex items-center px-4 py-1.5 text-xs font-semibold rounded-full bg-white/5 text-cyan-300 border border-white/10 backdrop-blur-md shadow-lg shadow-cyan-900/20;
+  @apply inline-flex items-center px-4 py-1.5 text-xs font-semibold rounded-full bg-[#1C1C1C] text-[#C4FF00] border border-[#C4FF00]/10 backdrop-blur-md shadow-lg shadow-[#C4FF00]/10;
 }
 
 .auth-btn {
-  @apply w-full bg-gradient-to-r from-cyan-600 to-indigo-600 text-white rounded-xl py-3 font-semibold tracking-wide
-  hover:from-cyan-500 hover:to-indigo-500 hover:shadow-lg hover:shadow-cyan-500/25 
-  focus:ring-2 focus:ring-cyan-500/50 focus:outline-none transition-all duration-300 transform active:scale-[0.98];
+  @apply w-full bg-[#C4FF00] text-black rounded-xl py-3 font-semibold tracking-wide hover:bg-[#B3E800] hover:shadow-lg hover:shadow-[#C4FF00]/20 focus:ring-2 focus:ring-[#C4FF00]/50 focus:outline-none transition-all duration-300 transform active:scale-[0.98];
 }
 
 .auth-link {
-  @apply px-4 py-2 inline-block bg-white/5 border border-white/5 rounded-xl text-white/70
-  hover:bg-white/10 hover:text-white text-sm transition-all duration-300 backdrop-blur-sm;
+  @apply px-4 py-2 inline-block bg-white/5 border border-white/5 rounded-xl text-white/70 hover:bg-white/10 hover:text-white text-sm transition-all duration-300 backdrop-blur-sm;
 }

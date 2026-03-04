@@ -30,9 +30,9 @@ function ChatHeader() {
                 </div>
                 <div>
                     <h3 className="text-white font-semibold text-lg tracking-wide">{selectedUser.fullName}</h3>
-                    <div className='flex items-center gap-1.5 mt-0.5'>
-                        <span className={`w-2 h-2 rounded-full ${isOnline ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" : "bg-white/30"}`}></span>
-                        <p className={`${isOnline ? "text-emerald-400/90" : "text-white/40"} text-xs font-medium tracking-wider uppercase`}>
+                    <div className="flex items-center justify-between">
+                        <span className={`w-2 h-2 rounded-full ${isOnline ? "bg-[#C4FF00] shadow-[0_0_8px_rgba(196,255,0,0.8)]" : "bg-white/30"}`}></span>
+                        <p className={`${isOnline ? "text-[#C4FF00]/90" : "text-white/40"} text-xs font-medium tracking-wider uppercase`}>
                             {isOnline ? "Online" : "Offline"}
                         </p>
                     </div>

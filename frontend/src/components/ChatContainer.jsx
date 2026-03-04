@@ -44,7 +44,7 @@ function ChatContainer() {
                 >
                   <div className={
                     `chat-bubble relative shadow-lg ${msg.senderId === authUser._id
-                      ? "bg-gradient-to-r from-cyan-600 to-indigo-600 text-white border border-white/10"
+                      ? "bg-[#C4FF00] text-[#050505] border border-[#C4FF00]/20"
                       : "bg-white/5 border border-white/10 text-white backdrop-blur-md"
                     }`
                   }>
@@ -61,7 +61,7 @@ function ChatContainer() {
                       {msg.senderId === authUser._id && (
                         <span className="ml-1 flex items-center">
                           {msg.status === "read" ? (
-                            <CheckCheck className="w-3.5 h-3.5 text-blue-400" />
+                            <CheckCheck className="w-3.5 h-3.5 text-blue-600" />
                           ) : msg.status === "delivered" ? (
                             <CheckCheck className="w-3.5 h-3.5" />
                           ) : (

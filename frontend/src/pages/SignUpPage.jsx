@@ -16,7 +16,7 @@ function SignUpPage() {
 
   return (
     <div className='w-full flex items-center justify-center p-4 sm:p-8 bg-transparent min-h-screen'>
-      <div className='relative w-full max-w-5xl h-fit min-h-[500px] shadow-2xl shadow-cyan-900/10 rounded-3xl overflow-hidden'>
+      <div className='relative w-full max-w-5xl h-fit min-h-[500px] shadow-[0_0_15px_rgba(196,255,0,0.1)] rounded-3xl overflow-hidden'>
         <BorderAnimatedContainer>
           <div className='w-full h-full flex flex-col md:flex-row bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl'>
             {/* FORM CLOUMN - LEFT SIDE */}
@@ -24,8 +24,8 @@ function SignUpPage() {
               <div className='w-full max-w-md'>
                 {/* HEADING TEXT */}
                 <div className="text-center mb-8">
-                  <div className="w-16 h-16 mx-auto bg-gradient-to-tr from-cyan-500/20 to-indigo-500/20 rounded-2xl flex items-center justify-center mb-6 border border-white/10 shadow-[0_0_15px_rgba(34,211,238,0.2)]">
-                    <MessageCircleIcon className="w-8 h-8 text-cyan-400" />
+                  <div className="w-16 h-16 mx-auto bg-gradient-to-tr from-[#C4FF00]/20 to-[#A0D000]/20 rounded-2xl flex items-center justify-center mb-6 border border-[#C4FF00]/10 shadow-[0_0_15px_rgba(196,255,0,0.2)]">
+                    <MessageCircleIcon className="w-8 h-8 text-[#C4FF00]" />
                   </div>
                   <h2 className="text-3xl font-extrabold text-white tracking-tight mb-2">Create Account</h2>
                   <p className="text-white/60 text-lg">Sign up for a new account</p>
@@ -102,16 +102,16 @@ function SignUpPage() {
             </div>
 
             {/* FORM ILLUSTRATION - RIGHT SIDE */}
-            <div className="hidden md:w-1/2 md:flex flex-col items-center justify-center p-12 bg-gradient-to-bl from-indigo-900/20 via-transparent to-cyan-900/10 relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.1)_0,transparent_70%)] opacity-50 pointer-events-none" />
+            <div className="hidden md:w-1/2 md:flex flex-col items-center justify-center p-12 bg-gradient-to-bl from-black/80 via-transparent to-[#C4FF00]/5 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(196,255,0,0.05)_0,transparent_70%)] opacity-50 pointer-events-none" />
               <div className="relative z-10 w-full max-w-lg">
                 <img
                   src="/signup.png"
                   alt="Start Your Journey"
-                  className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(34,211,238,0.2)] hover:scale-105 transition-transform duration-700"
+                  className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(196,255,0,0.15)] hover:scale-105 transition-transform duration-700"
                 />
                 <div className="mt-10 text-center">
-                  <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-indigo-400 tracking-tight">Start Your Journey Today</h3>
+                  <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#C4FF00] to-green-200 tracking-tight">Start Your Journey Today</h3>
 
                   <div className="mt-6 flex justify-center gap-4 flex-wrap">
                     <span className="auth-badge">Free</span>

@@ -32,7 +32,7 @@ function ProfileHeader() {
         <div className='flex items-center gap-4'>
           {/* Avatar */}
           <div className='avatar online'>
-            <button className='size-14 rounded-full overflow-hidden relative group ring-2 ring-cyan-500/30 hover:ring-cyan-400 transition-all duration-300 shadow-[0_0_15px_rgba(34,211,238,0.2)]'
+            <button className='size-14 rounded-full overflow-hidden relative group ring-2 ring-[#C4FF00]/30 hover:ring-[#C4FF00] transition-all duration-300 shadow-[0_0_15px_rgba(196,255,0,0.2)]'
               onClick={() => fileInputRef.current.click()}
             >
               <img src={SelectedImg || authUser.profilePic || '/avatar.png'}
@@ -58,8 +58,8 @@ function ProfileHeader() {
             </h3>
 
             <div className='flex items-center gap-1.5 mt-0.5'>
-              <span className='w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]'></span>
-              <p className='text-emerald-400/90 text-xs font-medium tracking-wider uppercase'>Online</p>
+              <span className='w-2 h-2 rounded-full bg-[#C4FF00] shadow-[0_0_8px_rgba(196,255,0,0.8)]'></span>
+              <p className='text-[#C4FF00]/90 text-xs font-medium tracking-wider uppercase'>Online</p>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ function ProfileHeader() {
           {/* SOUND TOGGLE BTN */}
           <button
             className={`w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center transition-all duration-300 ${isSoundEnabled
-              ? "text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-500/20 shadow-[0_0_10px_rgba(34,211,238,0.1)]"
+              ? "text-[#C4FF00] hover:bg-[#C4FF00]/10 hover:border-[#C4FF00]/20 shadow-[0_0_10px_rgba(196,255,0,0.1)]"
               : "text-white/40 hover:bg-white/10 hover:text-white/70"
               }`}
             onClick={() => {

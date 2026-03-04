@@ -82,7 +82,7 @@ function MessageInput() {
             setText(e.target.value);
             isSoundEnabled && playRandomKeyStrokeSound();
           }}
-          className="flex-1 input rounded-full py-3 px-6 shadow-none border-white/10 bg-white/5 hover:bg-white/10 focus:bg-white/10 focus:border-cyan-500/30 transition-all duration-300"
+          className="flex-1 input rounded-full py-3 px-6 shadow-none border-white/10 bg-white/5 hover:bg-white/10 focus:bg-white/10 focus:border-[#C4FF00]/50 transition-all duration-300"
           placeholder="Type your message..."
         />
 
@@ -98,7 +98,7 @@ function MessageInput() {
           type="button"
           onClick={() => fileInputRef.current?.click()}
           className={`p-3 rounded-full flex items-center justify-center transition-all duration-300 ${imagePreview
-            ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shadow-[0_0_10px_rgba(34,211,238,0.2)]"
+            ? "bg-[#C4FF00]/20 text-[#C4FF00] border border-[#C4FF00]/30 shadow-[0_0_10px_rgba(196,255,0,0.2)]"
             : "bg-white/5 text-white/50 border border-white/5 hover:bg-white/10 hover:text-white/80"
             }`}
           title="Attach image"
@@ -108,7 +108,7 @@ function MessageInput() {
         <button
           type="submit"
           disabled={!text.trim() && !imagePreview}
-          className="p-3 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 text-white font-medium hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none flex items-center justify-center"
+          className="p-3 rounded-full bg-[#C4FF00] text-[#050505] font-medium hover:shadow-[0_0_15px_rgba(196,255,0,0.4)] hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none flex items-center justify-center"
           title="Send message"
         >
           <SendIcon className="w-5 h-5" />
